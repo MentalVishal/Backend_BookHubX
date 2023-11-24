@@ -3,12 +3,17 @@ const cors = require("cors");
 const { Connection } = require("./db");
 const { bookModel } = require("./Model/BooksModel");
 const { userModel } = require("./Model/UserModel");
+const { userRoute } = require("./Routes/userRoutes");
+const { bookRoute } = require("./Routes/bookRoutes");
 require("dotenv").config();
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+app.use("/user", userRoute);
+app.use("/book", bookRoute);
 
 app.post("/book", async (req, res) => {
   try {
