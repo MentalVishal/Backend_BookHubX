@@ -5,6 +5,7 @@ const { bookModel } = require("./Model/BooksModel");
 const { userModel } = require("./Model/UserModel");
 const { userRoute } = require("./Routes/userRoutes");
 const { bookRoute } = require("./Routes/bookRoutes");
+const { discussionRoute } = require("./Routes/discussionRoute");
 require("dotenv").config();
 
 const app = express();
@@ -14,25 +15,10 @@ app.use(cors());
 
 app.use("/user", userRoute);
 app.use("/book", bookRoute);
+app.use("/discussion", discussionRoute);
 
-app.post("/book", async (req, res) => {
-  try {
-    const book = new bookModel(req.body);
-    await book.save();
-    res.status(200).json({ msg: "Sucessfully Posted" });
-  } catch (error) {
-    res.status(400).json({ err: error });
-  }
-});
-
-app.post("/user", async (req, res) => {
-  try {
-    const user = new userModel(req.body);
-    await user.save();
-    res.status(200).json({ msg: "Sucessfully Posted" });
-  } catch (error) {
-    res.status(400).json({ err: error });
-  }
+app.get("/", (req, res) => {
+  res.send("Welcome to the Backend of BookHubX");
 });
 
 app.listen(process.env.port, async () => {

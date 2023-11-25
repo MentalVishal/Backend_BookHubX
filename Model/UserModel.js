@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema(
     name: String,
     email: String,
     password: String,
-    books: Array,
+    books: [{ title: String, genre: String, description: String }],
     role: String,
   },
   { versionKey: false }

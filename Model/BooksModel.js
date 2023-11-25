@@ -7,8 +7,14 @@ const bookSchema = mongoose.Schema(
     author: String,
     genre: String,
     description: String,
-    review: [{ userId: String, name: String, text: String }],
-    rating: { type: Number, default: 4 },
+    review: [
+      {
+        userId: String,
+        name: String,
+        text: String,
+        rating: { type: Number, default: 4 },
+      },
+    ],
     price: Number,
   },
   { versionKey: false }
