@@ -32,7 +32,7 @@ app.post("/chat", auth, async (req, res) => {
 
     let data = response[0].message.content;
     allMessage.push(data);
-    res.json(allMessage);
+    res.json(data);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "An error occurred" });
